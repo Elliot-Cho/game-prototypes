@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<dialogue id="bob" cond="idle">
+	<!-- Conversations are selected based on relations level with NPC, party members, and flagged variables. May be selected multiple times. -->
+	<conversation>
+		<relationsMin>-10</relationsMin>
+		<relationsMax>10</relationsMax>
+		<party />
+		<vars />
+		<dialogueChains>
+			<!-- Each chain is a different conversation with the same conditions. Chains are cycled through in random order until all chains have been completed, then are recycled. -->
+			<chain>
+				<dialogueOptions speaker="bob">
+					<textOptions>
+						<text>Test dialogue.</text>
+					</textOptions>
+				</dialogueOptions>
+				<dialogueOptions speaker="player">
+					<textOptions>
+						<text>Test &lt;b&gt;bold&lt;/b&gt;, my name:{{player}}, {{p=4}}portrait 4{{p=1}}, {{a=1}}action 1.</text>
+					</textOptions>
+				</dialogueOptions>
+        <dialogueOptions speaker="bob" type="last">
+					<textOptions>
+						<text>End of test dialogue.</text>
+					</textOptions>
+				</dialogueOptions>
+			</chain>
+			<chain>
+				<!-- Dialogue options are iterated through in order to form a conversation. -->
+				<dialogueOptions speaker="bob">
+					<textOptions portrait="content">
+						<!-- Text options are similar but different lines of dialogue for extra variance. Unlike chains, they are picked at random and not cycled through. -->
+						<text>Hello, stranger.</text>
+						<text>Hey there, wayfinder.</text>
+						<text>Hi there.</text>
+            <text>Err, hey stranger.</text>
+            <text>Hey!</text>
+            <text>Hello, neighbour.</text>
+					</textOptions>
+				</dialogueOptions>
+				<dialogueOptions speaker="player">
+					<!-- Text options can be restricted by player persona. -->
+					<textOptions persona="Adventurous" portrait="happy">
+						<text>Hey there!</text>
+						<text>Heya mister!</text>
+						<text>Hi!</text>
+            <text>Hey buddy!</text>
+            <text>How's it going, mister?</text>
+            <text>Good day, neighbour!</text>
+            <text>Heyyy!</text>
+					</textOptions>
+					<textOptions persona="Professional">
+						<text>...Good day.</text>
+						<text>Hello.</text>
+            <text>Good day.</text>
+            <text>Greetings.</text>
+            <text>Hello, sir.</text>
+            <text>*Nod*</text>
+            <text>*Salute*</text>
+					</textOptions>
+					<!-- A dialogue option with no persona requirements is the default response. If no dialogue options are valid and there is no default, the exchange is skipped in the chain. -->
+					<textOptions>
+						<text>Hello.</text>
+						<text>Hi.</text>
+            <text>Hey.</text>
+            <text>Hey there.</text>
+					</textOptions>
+				</dialogueOptions>
+				<dialogueOptions speaker="bob" type="repeater">
+					<textOptions persona="Adventurous" portrait="content">
+						<text>You seem to be doing well!</text>
+						<text>Aren't you a cheerful young fella!</text>
+						<text>Great weather today!</text>
+            <text>Great day today, eh?</text>
+            <text>Wonderful weather!</text>
+            <text>You're a bright one, aren't ya?</text>
+            <text>Good mood today, young man?</text>
+					</textOptions>
+          <textOptions persona="Professional">
+						<text>Not much of a talker, are ya?</text>
+						<text>Have time to chat?</text>
+            <text>I suppose you don't have much free time.</text>
+            <text>Any news about the empire today?</text>
+            <text>Anything intresting today?</text>
+					</textOptions>
+					<textOptions portrait="content">
+						<text>Nice weather today.</text>
+            <text>Nice day today.</text>
+            <text>Busy?</text>
+            <text>Great weather.</text>
+            <text>It's nice out today.</text>
+					</textOptions>
+				</dialogueOptions>
+				<dialogueOptions speaker="player" type="last">
+          <textOptions persona="Adventurous" portrait="happy">
+						<text>Yup! See you around, friend.</text>
+						<text>Yup!</text>
+						<text>Yeah, today is a great day!</text>
+            <text>For sure!</text>
+            <text>That's for sure!</text>
+            <text>Yeah!</text>
+					</textOptions>
+          <textOptions persona="Professional" portrait="serious">
+						<text>I'm afraid not.</text>
+						<text>No, sorry.</text>
+            <text>Unfortunately, no.</text>
+            <text>No.</text>
+            <text>No, sir.</text>
+					</textOptions>
+					<textOptions>
+						<text>Yeah.</text>
+            <text>Yup.</text>
+            <text>Mmhm.</text>
+            <text>*Nod*</text>
+					</textOptions>
+				</dialogueOptions>
+			</chain>
+		</dialogueChains>
+	</conversation>
+	<conversation>
+		<relationsMin>11</relationsMin>
+		<relationsMax>100</relationsMax>
+		<party>
+			<member>Alice</member>
+			<member>Mallory</member>
+		</party>
+		<vars>
+			<var>SavedVillage</var>
+		</vars>
+		<dialogueChains>
+			<chain>
+				<dialogueOptions speaker="bob">
+					<textOptions portrait="happy">
+						<text>{{player}}! Thanks again for saving our village from those monsters!</text>
+						<text>You saved us wayfinder! I give you my utmost thanks.</text>
+            <text>Wayfinder! The village hero! Thank you on behalf of everyone here.</text>
+            <text>{{player}}, the village hero. Thanks again for saving us!</text>
+            <text>You really showed those monsters who's boss! Thank you for helping us out.</text>
+					</textOptions>
+				</dialogueOptions>
+				<dialogueOptions speaker="player">
+          <textOptions persona="Adventurous" portrait="happy">
+						<text>No problem at all, Bob! It's my village too after all.</text>
+						<text>All in a day's work! You can always count on me.</text>
+            <text>Anytime, Bob! I'll always be here to help!</text>
+            <text>You're welcome! It's the least I can do for you guys!</text>
+					</textOptions>
+          <textOptions persona="Professional" portrait="content">
+						<text>It's my duty. Stay safe, sir.</text>
+						<text>You're welcome, citizen. Stay safe.</text>
+            <text>It was my pleasure to aid you.</text>
+            <text>Of course. I will continue to watch over the village.</text>
+					</textOptions>
+					<textOptions portrait="content">
+						<text>You're welcome!</text>
+						<text>No problem!</text>
+            <text>Anytime.</text>
+            <text>Happy to help!</text>
+					</textOptions>
+				</dialogueOptions>
+				<dialogueOptions speaker="bob">
+					<textOptions portrait="happy">
+						<text>You three make a great team, you know? Even if Alice is always picking on Mallory.</text>
+            <text>You three are great at your job! Including the dynamic between Alice and Mallory, of course. Haha!</text>
+            <text>And thank you to you as well, Alice, Mallory. Try not to pick on the boy too much though, eh?</text>
+					</textOptions>
+				</dialogueOptions>
+				<dialogueOptions speaker="mallory">
+          <textOptions portrait="annoyed">
+						<text>You hear that Alice? Even the villagers know you get on my nerves.</text>
+            <text>See? I told you you're annoying.</text>
+            <text>See? Even he knows you're always bothering me.</text>
+					</textOptions>
+				</dialogueOptions>
+				<dialogueOptions speaker="alice">
+          <textOptions portrait="9">
+						<text>Please, people just know you're a wimp.</text>
+            <text>Ha, whine some more ya punk.</text>
+            <text>Psh, I don't bully you that much.</text>
+					</textOptions>
+				</dialogueOptions>
+				<dialogueOptions speaker="player">
+          <textOptions persona="Adventurous" portrait="content">
+						<text>...Heh, they're a bit of a handful sometimes. Don't worry! I'll take care of them.</text>
+						<text>Guys...! They're always like that!</text>
+            <text>I think they'll be just fine. Thanks!</text>
+            <text>Ha! They're fun to watch, that's for sure.</text>
+            <text>Yeah, stop picking on the poor guy!</text>
+					</textOptions>
+          <textOptions persona="Professional" portrait="serious">
+						<text>Thank you, sir. I'll try to keep them in check.</text>
+						<text>Thank you, sir.</text>
+            <text>Quiet you two.</text>
+            <text>I just try to ignore them, sir.</text>
+					</textOptions>
+					<textOptions>
+						<text>Thanks.</text>
+            <text>Yeah, they do that often.</text>
+            <text>Ha, they are a good team.</text>
+					</textOptions>
+				</dialogueOptions>
+        <dialogueOptions speaker="bob" type="uniquelast">
+					<textOptions portrait="content">
+						<text>Off you go then!</text>
+					</textOptions>
+				</dialogueOptions>
+			</chain>
+		</dialogueChains>
+	</conversation>
+  <conversation>
+    <relationsMin>-100</relationsMin>
+    <relationsMax>-10</relationsMax>
+    <dialogueChains>
+      <chain>
+        <dialogueOptions speaker="bob" type="choice">
+          <textOptions portrait="serious">
+            <text>Wayfinder, what's your take on the monsters that have been raiding us?</text>
+            <text>Hey you, what do you make of these monsters?</text>
+            <text>Hey, wayfinder. So about these monsters that have been raiding the village...</text>
+            <text>Gah, these monsters are wrecking havoc on my farm... What say you about them?</text>
+          </textOptions>
+          <choiceOptions>
+            <choice id="bob.idle.001">
+              <select>I hate them.</select>
+              <textOptions persona="Adventurous" portrait="annoyed">
+                <text>Oh, yeah they're terrible!</text>
+                <text>Those monsters are always up to no good!</text>
+                <text>Damn creatures really are a nuscience!</text>
+                <text>Blech! They suck!</text>
+              </textOptions>
+              <textOptions portrait="annoyed">
+                <text>I hate them. </text>
+                <text>They're no good.</text>
+                <text>They'll have to be dealt with the hard way.</text>
+                <text>They're scum.</text>
+              </textOptions>
+            </choice>
+            <choice id="bob.idle.002">
+              <select>They're not too bad.</select>
+              <textOptions persona="Adventurous" portrait="content">
+                <text>They're not too bad! They're just defending themselves!</text>
+                <text>I think they're just angry about the village being in their territory.</text>
+                <text>Hmm, I've met some of them and they don't seem to bad!</text>
+                <text>Hey, they're not all bad.</text>
+              </textOptions>
+              <textOptions>
+                <text>They're only defending their territory.</text>
+                <text>I think they're misunderstood.</text>
+                <text>They're not as bad as you think.</text>
+                <text>They're not too bad, really...</text>
+              </textOptions>
+            </choice>
+          </choiceOptions>
+        </dialogueOptions>
+        <dialogueOptions id="bob.idle.001" speaker="bob">
+          <textOptions>
+            <text>I'm glad you feel the same way as I do.</text>
+            <text>That's how I feel too.</text>
+            <text>Yeah, why can't they just leave us in peace?</text>
+            <text>You're right, these blasted monsters...</text>
+          </textOptions>
+        </dialogueOptions>
+        <dialogueOptions id="bob.idle.002" speaker="bob">
+          <textOptions portrait="annoyed">
+            <text>Really? I thought you were supposed to deal with them.</text>
+            <text>You'd feel differently if they destroyed your way of life.</text>
+            <text>I think otherwise. They should leave us alone!</text>
+            <text>That's not something a wayfinder should be saying.</text>
+          </textOptions>
+        </dialogueOptions>
+        <dialogueOptions id="bob.idle.001" speaker="player" repeater="true">
+          <textOptions portrait="content">
+            <text>I'm here though, don't worry!</text>
+            <text>I'll take care of them.</text>
+            <text>I'll do my best to slow them down.</text>
+            <text>I'm going to make sure they stay away.</text>
+          </textOptions>
+        </dialogueOptions>
+        <dialogueOptions id="bob.idle.002" speaker="player">
+          <textOptions>
+            <text>You might have the wrong idea about them.</text>
+            <text>Well, little known fact is that the empire cut them down first.</text>
+            <text>We should try our hand at negotiation before we start swinging our blades.</text>
+            <text>I understand your view, but I think you should reconsider it.</text>
+          </textOptions>
+        </dialogueOptions>
+        <dialogueOptions id="bob.idle.001" speaker="bob" type="last">
+            <textOptions portrait="content">
+              <text>I'm rooting for ya.</text>
+              <text>You sure know how to get rid of a headache.</text>
+              <text>Your presence puts me at ease.</text>
+              <text>Let me know if you need any help.</text>
+            </textOptions>
+          </dialogueOptions>
+          <dialogueOptions id="bob.idle.002" speaker="bob" type="choice">
+            <textOptions portrait="annoyed">
+              <text>Hrrm. I'm not convinced...</text>
+              <text>Bah, I'll deal with them myself.</text>
+              <text>It'll take more to convince me.</text>
+              <text>I stand by my opinion of the foul beasts.</text>
+            </textOptions>
+            <choiceOptions>
+              <choice id="bob.idle.002.a">
+                <select>They aren't mindless monsters.</select>
+                <textOptions portrait="serious">
+                  <text>These creatures aren't just beasts! They are thinking, breathing beings just like yourself. </text>
+                  <text>They aren't just monsters! They have thoughts and dreams just like humans do.</text>
+                  <text>The empire may tell you they're animals, but that's not true. They're thinking, feeling beings!</text>
+                  <text>They think the same of us humans! They aren't just mindless monsters you know.</text>
+                </textOptions>
+              </choice>
+              <choice id="bob.idle.002.b">
+                <select>You're farming on their land.</select>
+                <textOptions portrait="serious">
+                  <text>Maybe they'd leave you alone if you didn't cut down their trees and plant crops on their land.</text>
+                  <text>You're standing on top of what used to be their home. They just want back what's theirs.</text>
+                  <text>Your farm sits right on top of their old home.</text>
+                  <text>This place used to be a safe haven for the 'monsters'. Now, you use it for your crops and animals. Think about how they'd feel.</text>
+                </textOptions>
+              </choice>
+              <choice id="bob.idle.002.c">
+                <select>Fighting just leads to more fighting.</select>
+                <textOptions portrait="serious">
+                  <text>Is attacking them the only way to solve this? It'll just make things worse. We need to try negotiation.</text>
+                  <text>Fighting just leads to more fighting. If we want them to stop, we have to talk to them.</text>
+                  <text>We can't just fight fire with fire, we need a solution. I'm going to talk to them.</text>
+                  <text>Attacking them just leads to more bloodshed on both sides. We need to talk peace.</text>
+                </textOptions>
+              </choice>
+            </choiceOptions>
+          </dialogueOptions>
+        <dialogueOptions id="bob.idle.002.a" speaker="bob" type="last">
+          <textOptions portrait="angry">
+            <text>Well if they aren't mindless, they should mind their own business!</text>
+            <text>That just means that they know what they're doing!</text>
+            <text>Monsters? Thinking? Pah, spare me that nonsense.</text>
+          </textOptions>
+        </dialogueOptions>
+        <dialogueOptions id="bob.idle.002.b" speaker="bob" type="last">
+          <textOptions portrait="angry">
+            <text>Well it isn't my fault I have mouths to feed!</text>
+            <text>That wasn't my fault. The empire gave me this land!</text>
+            <text>Hardly fair to blame me, wayfinder! I'm just trying to make a living.</text>
+          </textOptions>
+        </dialogueOptions>
+        <dialogueOptions id="bob.idle.002.c" speaker="bob">
+          <textOptions portrait="neutral">
+            <text>... My old man used to say that... he was a soldier. But these are monsters, they won't stop!</text>
+            <text>...My father used to be a soldier, and he said the same thing... But what if they don't stop wayfinder? I can't just let them get away with this...</text>
+            <text>...My late father said similar things... it's hard to argue with that. But will these creatures ever stop?</text>
+          </textOptions>
+        </dialogueOptions>
+        <dialogueOptions id="bob.idle.002.c" speaker="player">
+          <textOptions portrait="content">
+            <text>Your father was a wise man. And don't worry, the monsters aren't just mindless creatures. I'll talk to them.</text>
+          </textOptions>
+        </dialogueOptions>
+        <dialogueOptions id="bob.idle.002.c" speaker="bob" type="last">
+          <textOptions>
+            <text>I hope you're right about this wayfinder...</text>
+          </textOptions>
+        </dialogueOptions>
+      </chain>
+    </dialogueChains>
+  </conversation>
+</dialogue>

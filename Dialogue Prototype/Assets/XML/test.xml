@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<dialogue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="bob.village">
+  <init>
+    <conversation>
+      <speaker>Bob</speaker>
+      <relationsMin>-10</relationsMin>
+      <relationsMax>10</relationsMax>
+      <party />
+      <vars />
+      <dialogueOptions>
+        <text id="001">Hello, stranger.</text>
+        <text id="002">Hey there, wayfinder.</text>
+        <text id="003">Hi there.</text>
+      </dialogueOptions>
+    </conversation>
+    <conversation>
+      <speaker>Bob</speaker>
+      <relationsMin>50</relationsMin>
+      <relationsMax>75</relationsMax>
+      <party>
+        <member>Alice</member>
+        <member>Mallory</member>
+      </party>
+      <vars>
+        <var>SavedVillage</var>
+        <var>NotBusy</var>
+      </vars>
+      <dialogueOptions>
+        <text id="052">$[Player.Name]! Thanks again for saving our village from those monsters!</text>
+      </dialogueOptions>
+    </conversation>
+  </init>
+  <responses>
+    <response id="001">
+      <responseOptions>
+        <speaker>Player</speaker>
+        <options>
+          <text rationalMin="-10" seriousMax="-30">Hey there!</text>
+          <text rationalMax="20" seriousMin="50">...Good day.</text>
+          <text>Hello.</text>
+        </options>
+      </responseOptions>
+      <responseOptions>
+        <speaker>Bob</speaker>
+        <options>
+          <text rationalMin="-10" seriousMax="-30">How are you this fine day?</text>
+          <text rationalMax="20" seriousMin="50">Not much of a talker, are ya?</text>
+          <text>Nice weather today.</text>
+        </options>
+      </responseOptions>
+      <responseOptions>
+        <speaker>Player</speaker>
+        <options>
+          <text rationalMin="-10" seriousMax="-30">Great! See you around, friend.</text>
+          <text rationalMax="20" seriousMin="50">No.</text>
+          <text>Yup.</text>
+        </options>
+      </responseOptions>
+    </response>
+    <response id="052">
+      <responseOptions>
+        <speaker>Player</speaker>
+        <options>
+          <text rationalMin="-10" seriousMax="-30">It was my pleasure! It's my village too, after all.</text>
+          <text rationalMax="20" seriousMin="50">It's my duty. Stay safe, sir.</text>
+          <text>No problem at all.</text>
+        </options>
+      </responseOptions>
+      <responseOptions>
+        <speaker>Bob</speaker>
+        <options>
+          <text>You three make a great team, you know? Even if Alice is always picking on Mallory.</text>
+        </options>
+      </responseOptions>
+      <responseOptions>
+        <speaker>Mallory</speaker>
+        <options>
+          <text>You hear that Alice? Even the villagers know you get on my nerves.</text>
+        </options>
+      </responseOptions>
+      <responseOptions>
+        <speaker>Alice</speaker>
+        <options>
+          <text>Please, they just know you're a wimp.</text>
+        </options>
+      </responseOptions>
+      <responseOptions>
+        <speaker>Player</speaker>
+        <options>
+          <text rationalMin="-10" seriousMax="-30">Heh, they're a bit of a handful sometimes. Don't worry! I'll take care of them.</text>
+          <text rationalMax="20" seriousMin="50">Thank you sir. I'll try to keep them in check.</text>
+          <text>Thanks!</text>
+        </options>
+      </responseOptions>
+    </response>
+  </responses>
+</dialogue>

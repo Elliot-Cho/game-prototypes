@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<AbilityCollection>
+    <Abilities>
+        <Ability Type="OnEntityAbility">
+            <Name>Basic_Melee</Name>
+            <Desc>Basic_Melee_Desc</Desc>
+            <Image></Image>
+            <!--<Stats>-->
+            <BaseRange>0.0</BaseRange>
+            <AreaRange>0.0</AreaRange>
+            <EffectMult>1.0</EffectMult>
+            <ActionCost>1.0</ActionCost>
+            <!--</Stats>
+            <AbilityType>
+                <sub>Damage<sub>
+            <AbilityType>
+            <Friendly>False</Friendly>
+            <EntityTargets>
+                <sub>Enemies</sub>
+                <sub>Obstacles</sub>
+            </EntityTargets>-->
+        </Ability>
+        <Ability Type="CloseBurst">
+            <Name>Close_Burst</Name>
+            <Desc>Close_Burst_Desc</Name>
+            <Image></Image>
+            <BaseRange>2.0</BaseRange>
+            <EffectMult>1.0</EffectMult>
+            <ActionCost>1.0</ActionCost>
+            <!--<AbilityType>
+                <sub>Damage<sub>
+            <AbilityType>
+            <EntityTargets>
+                <sub>Enemies</sub>
+                <sub>Obstacles</sub>
+            </EntityTargets>-->
+        </Ability>
+        <Ability Type="RangedAbility">
+            <Name>Ranged_Attack</Name>
+            <Desc>Ranged_Attack_Desc</Name>
+            <Image></Image>
+            <BaseRange>10.0</BaseRange>
+            <EffectMult>1.0</EffectMult>
+            <ActionCost>1.0</ActionCost>
+            <!--<AbilityType>
+                <sub>Damage<sub>
+            <AbilityType>
+            <EntityTargets>
+                <sub>Enemies</sub>
+                <sub>Obstacles</sub>
+            </EntityTargets>-->
+        </Ability>
+        <Ability Type="BlastAbility">
+            <Name>Blast_Attack</Name>
+            <Desc>Blast_Attack_Desc</Name>
+            <Image></Image>
+            <BaseRange>10.0</BaseRange>
+            <AreaRange>3.0</AreaRange>
+            <EffectMult>1.0</EffectMult>
+            <ActionCost>1.0</ActionCost>
+            <!--<AbilityType>
+                <sub>Damage<sub>
+            <AbilityType>
+            <EntityTargets>
+                <sub>Enemies</sub>
+                <sub>Obstacles</sub>
+            </EntityTargets>-->
+        </Ability>
+    </Abilities>
+</AbilityCollection>
