@@ -202,6 +202,16 @@
                 {
                     var tag = RichTextTag.ParseMarkup(remainingText);
                     symbol = new TypedTextSymbol(tag);
+                    if (tag == "{{player}}")
+                    {
+                        foreach (var letter in Player.Instance.entityName)
+                        {
+                            symbolList.Add(new TypedTextSymbol(letter.ToString()));
+                        }
+                        parsedCharacters += symbol.Length;
+                        continue;
+                    }
+                    
                 }
                 else
                 {

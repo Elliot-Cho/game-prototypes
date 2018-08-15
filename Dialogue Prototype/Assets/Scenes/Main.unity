@@ -1196,9 +1196,6 @@ MonoBehaviour:
   currentChain:
     repeaterLines: 1
     dialogueOptions: []
-  gameController: {fileID: 1436353701}
-  dialogueController: {fileID: 834372928}
-  player: {fileID: 1465666894}
   relations: 70
   npcVars: []
 --- !u!1 &797530047
@@ -1455,8 +1452,6 @@ MonoBehaviour:
   content: {fileID: 1691621427}
   image: {fileID: 1898711904}
   choices: {fileID: 42476614}
-  gameController: {fileID: 1436353701}
-  player: {fileID: 1465666894}
   choosing: 0
   currentChoiceOptions:
     chooser: Player
@@ -1727,9 +1722,6 @@ MonoBehaviour:
   currentChain:
     repeaterLines: 1
     dialogueOptions: []
-  gameController: {fileID: 1436353701}
-  dialogueController: {fileID: 834372928}
-  player: {fileID: 1465666894}
   relations: 0
   npcVars: []
 --- !u!4 &1389099470
@@ -1995,7 +1987,6 @@ MonoBehaviour:
     cond: 
     conversation: []
   entities: []
-  dialogueController: {fileID: 834372928}
   debugProgressDay: {fileID: 1393004859}
 --- !u!1 &1465666893
 GameObject:
@@ -2034,9 +2025,6 @@ MonoBehaviour:
   currentChain:
     repeaterLines: 1
     dialogueOptions: []
-  gameController: {fileID: 1436353701}
-  dialogueController: {fileID: 834372928}
-  player: {fileID: 0}
   persona:
     rational: 0
     serious: 0
@@ -2631,8 +2619,5 @@ MonoBehaviour:
   currentChain:
     repeaterLines: 1
     dialogueOptions: []
-  gameController: {fileID: 1436353701}
-  dialogueController: {fileID: 834372928}
-  player: {fileID: 1465666894}
   relations: 30
   npcVars: []
