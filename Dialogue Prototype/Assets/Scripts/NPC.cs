@@ -10,7 +10,7 @@ public class NPC : Entity {
 
     private void OnMouseDown()
     {
-        dialogueController.Talk(this);
+        DialogueController.Instance.Talk(this);
     }
 
     /// <summary>
@@ -20,8 +20,8 @@ public class NPC : Entity {
     /// <returns>True if the string is the player's current persona.</returns>
     public bool MatchPersona (string required)
     {
-        var rational = player.persona.rational;
-        var serious = player.persona.serious;
+        var rational = Player.Instance.persona.rational;
+        var serious = Player.Instance.persona.serious;
 
         if (required.Equals("None"))
             return true;

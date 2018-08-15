@@ -8,6 +8,9 @@ using System;
 
 public class DialogueController : MonoBehaviour {
 
+    // Singleton instance; DialogueController should only exist once
+    public static DialogueController Instance { get; private set; }
+
     // Used for dialogue box typing
     [SerializeField]
     public TextMeshProUGUI entityName;
@@ -18,21 +21,27 @@ public class DialogueController : MonoBehaviour {
     [SerializeField]
     public GameObject choices;
 
-    public GameController gameController;
-    public Player player;
-
-    // Test bool for choosing state; replace with state machine later
+    // Test bool for choosing state; replace later
     [HideInInspector]
     public bool choosing = false;
     public Dialogue.Conversation.Chain.DialogueOptions.ChoiceOptions currentChoiceOptions;
 
-    // Test bool for last state; replace with state machine later
+    // Test bool for last state; replace later
     [HideInInspector]
     public bool last = false;
 
     // Id for choice selections to lead to appropriate response dialogues
     [HideInInspector]
     public string choiceId = "";
+
+    // Called before Start
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     // Use this for initialization
     void Start() {
@@ -178,8 +187,8 @@ public class DialogueController : MonoBehaviour {
 
                 if (npc.MatchPersona(option.persona))
                 {
-                    dialogueValues.entityName = player.entityName;
-                    dialogueValues.portrait = player.portraitList[GetPortraitNumber(option.portraitValue)];
+                    dialogueValues.entityName = Player.Instance.entityName;
+                    dialogueValues.portrait = Player.Instance.portraitList[GetPortraitNumber(option.portraitValue)];
 
                     dialogueValues.content = option.dialogueText[UnityEngine.Random.Range(0, option.dialogueText.Count)].text;
                     break;
@@ -391,13 +400,13 @@ public class DialogueController : MonoBehaviour {
     /// <param name="dialogueVars">The list of dialogue variables to check.</param>
     /// <param name="npc">The NPC to check.</param>
     /// <returns>Returns true if all dialogue variables are fulfilled.</returns>
-    public bool MatchVars(List<string> dialogueVars, NPC npc)
+    private bool MatchVars(List<string> dialogueVars, NPC npc)
     {
         List<string> currentVars = new List<string>();
 
         currentVars.AddRange(npc.npcVars);
-        currentVars.AddRange(player.playerVars);
-        currentVars.AddRange(gameController.globalVars);
+        currentVars.AddRange(Player.Instance.playerVars);
+        currentVars.AddRange(GameController.Instance.globalVars);
 
         return ListComparer.ContainsAll(currentVars, dialogueVars);
     }
@@ -407,9 +416,9 @@ public class DialogueController : MonoBehaviour {
     /// </summary>
     /// <param name="dialoguePartyMembers">The list of dialogue party member ids to check.</param>
     /// <returns>Returns true if the player's party contains the required members.</returns>
-    public bool MatchParty(List<string> dialoguePartyMembers)
+    private bool MatchParty(List<string> dialoguePartyMembers)
     {
-        return ListComparer.ContainsAll(player.party, dialoguePartyMembers);
+        return ListComparer.ContainsAll(Player.Instance.party, dialoguePartyMembers);
     }
 
     /// <summary>
@@ -417,7 +426,7 @@ public class DialogueController : MonoBehaviour {
     /// </summary>
     /// <param name="value">The string to check.</param>
     /// <returns>Returns the portrait number.</returns>
-    public int GetPortraitNumber (string value)
+    private int GetPortraitNumber (string value)
     {
         int result = 0;
 

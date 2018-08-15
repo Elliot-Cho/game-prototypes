@@ -9,15 +9,31 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class GameController : MonoBehaviour {
 
+    // Singleton instance
+    public static GameController Instance { get; private set; }
+
     public List<string> globalVars;
 
     public Dialogue pseudoDialogue;
 
     public List<Entity> entities;
 
-    public DialogueController dialogueController;
-
     public GameObject debugProgressDay;
+
+    // Called before start
+    private void Awake()
+    {
+        // Only create one instance of GmaeController, and destroy any other instances
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Use this for initialization
     void Start () {
@@ -30,7 +46,7 @@ public class GameController : MonoBehaviour {
         AssignDialogues();
 
         var progressButton = debugProgressDay.GetComponent<Button>();
-        progressButton.onClick.AddListener(dialogueController.ProgressDay);
+        progressButton.onClick.AddListener(DialogueController.Instance.ProgressDay);
     }
 
     void TestDeserialization()
@@ -52,7 +68,7 @@ public class GameController : MonoBehaviour {
                 entity.workingDialogues.Add(ObjectCopier.Clone(pseudoDialogue));
             }
 
-            entity.currentChain = dialogueController.GetDialogueChain(entity);
+            entity.currentChain = DialogueController.Instance.GetDialogueChain(entity);
         }
     }
 

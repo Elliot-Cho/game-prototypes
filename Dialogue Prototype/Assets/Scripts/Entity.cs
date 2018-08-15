@@ -30,20 +30,8 @@ public abstract class Entity : MonoBehaviour {
     [HideInInspector]
     public Dialogue.Conversation.Chain currentChain = new Dialogue.Conversation.Chain();
 
-    [HideInInspector]
-    public GameController gameController;
-    [HideInInspector]
-    public DialogueController dialogueController;
-    [HideInInspector]
-    public Player player;
-
     void Start()
     {
-        // Grab required object variables
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        dialogueController = gameController.dialogueController;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-
         // Add entity to entity list on instantiation
         entityList.Add(this);
         

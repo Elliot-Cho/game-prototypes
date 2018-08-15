@@ -15,6 +15,9 @@
         private const char EndTagDelimeter = '/';
         private const string ParameterDelimeter = "=";
 
+        private const string CustomOpeningDelimiter = "{{";
+        private const string CustomClosingDelimiter = "}}";
+
         /// <summary>
         /// Initializes a new instance of the <see cref="RichTextTag"/> class.
         /// </summary>
@@ -132,6 +135,16 @@
         }
 
         /// <summary>
+        /// Checks if the specified string starts with a custom markup tag.
+        /// </summary>
+        /// <param name="text">Text to check.</param>
+        /// <returns><c>true</c>, if the first character beings a markup tag, <c>false</c> otherwise.</returns>
+        public static bool StringStartsWithMarkup(string text)
+        {
+            return text.StartsWith(RichTextTag.CustomOpeningDelimiter);
+        }
+
+        /// <summary>
         /// Parses the text for the next RichTextTag.
         /// </summary>
         /// <returns>The next RichTextTag in the sequence. Null if the sequence contains no RichTextTag</returns>
@@ -157,6 +170,17 @@
 
             var tagText = text.Substring(openingDelimeterIndex, closingDelimeterIndex - openingDelimeterIndex + 1);
             return new RichTextTag(tagText);
+        }
+
+        public static string ParseMarkup(string text)
+        {
+            // Trim up to first delimeter
+            var openingDelimeterIndex = text.IndexOf(RichTextTag.CustomOpeningDelimiter);
+
+            var closingDelimeterIndex = text.IndexOf(RichTextTag.CustomClosingDelimiter);
+
+            var result = text.Substring(openingDelimeterIndex, closingDelimeterIndex - openingDelimeterIndex + 2);
+            return result;
         }
 
         /// <summary>

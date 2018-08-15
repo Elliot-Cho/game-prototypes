@@ -15,9 +15,6 @@
         private static readonly List<string> UnityTagTypes = new List<string> { "b", "i", "size", "color" };
         private static readonly List<string> CustomTagTypes = new List<string> { "delay" };
 
-        private const string OpeningDialogueDelimiter = "{{";
-        private const string ClosingDialogueDelimiter = "}}";
-
         /// <summary>
         /// Gets Completed TypedText from the specified text string.
         /// </summary>
@@ -195,9 +192,15 @@
 
                 // Check for tags
                 var remainingText = text.Substring(parsedCharacters, text.Length - parsedCharacters);
+
                 if (RichTextTag.StringStartsWithTag(remainingText))
                 {
                     var tag = RichTextTag.ParseNext(remainingText);
+                    symbol = new TypedTextSymbol(tag);
+                }
+                else if (RichTextTag.StringStartsWithMarkup(remainingText))
+                {
+                    var tag = RichTextTag.ParseMarkup(remainingText);
                     symbol = new TypedTextSymbol(tag);
                 }
                 else

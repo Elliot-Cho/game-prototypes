@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class Player : Entity {
 
+    public static Player Instance { get; private set; }
+
     public Persona persona;
 
     public List<string> party;
 
     public List<string> playerVars;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
 }
 
 [System.Serializable]
