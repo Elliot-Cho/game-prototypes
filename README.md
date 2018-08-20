@@ -1,6 +1,6 @@
 # Wayfinder Game Prototypes
 
-This repo contains video game prototyping that is currently being actively worked on. These prototypes will transferred to the full game once enough progress has been made.
+This repo contains video game prototyping that is currently being actively worked on. These prototypes will transferred to the full game once enough progress has been made. The prototypes were created using Unity3D, and coded in C# with some serialized scripts in XML.
 
 ## Prototypes
 
