@@ -209,6 +209,62 @@
 		</dialogueChains>
 	</conversation>
   <conversation>
+    <relationsMin>11</relationsMin>
+    <relationsMax>100</relationsMax>
+    <dialogueChains>
+      <chain>
+        <dialogueOptions speaker="bob">
+          <textOptions portrait="content">
+            <text>Hey there wayfinder!</text>
+            <text>Hey, {{player}}!</text>
+            <text>Howdy, wayfinder!</text>
+            <text>Oh, hey wayfinder!</text>
+            <text>{{player}}! Hey there!</text>
+          </textOptions>
+        </dialogueOptions>
+        <dialogueOptions speaker="player">
+          <textOptions portrait="content">
+            <text>Hi bob! How are you?</text>
+            <text>Hey bob, how's it going?</text>
+            <text>Hey there. How're you holding up?</text>
+            <text>Hi! How are you?</text>
+            <text>Hey, how's it going?</text>
+          </textOptions>
+        </dialogueOptions>
+        <dialogueOptions speaker="bob">
+          <textOptions portrait="annoyed">
+            <text>Glad you asked wayfinder! You wouldn't BELIEVE the day I've had! I've been all over the place doing blah blah blah blah blah, and then blah blah blah blah. But after that I blah blah blah blah blah blah blah, and then you wouldn't guess what happened after! That blah blah blah did some blah blah blah blah blah, which made blah turn out to be blah! Get a load of that, would ya?? And I'm not even done yet! After that, blah blah blah blah blah blah blah, which happened because of blah blah blah blah, and it all blah blah BLAH BLAH BLAH BLAHHHHH!! Blech. What a pain.</text>
+          </textOptions>
+        </dialogueOptions>
+        <dialogueOptions speaker="bob">
+          <textOptions portrait="annoyed">
+            <text>Crazy, right?</text>
+          </textOptions>
+        </dialogueOptions>
+        <dialogueOptions speaker="player">
+          <textOptions portrait="neutral">
+            <text>Zzzzzzzzz...zzzz...</text>
+          </textOptions>
+        </dialogueOptions>
+        <dialogueOptions speaker="bob">
+          <textOptions portrait="neutral">
+            <text>Wayfinder?</text>
+          </textOptions>
+        </dialogueOptions>
+        <dialogueOptions speaker="player">
+          <textOptions portrait="shock">
+            <text>..Huh!? Oh! Yeah, right. That sure is... something! Haha!</text>
+          </textOptions>
+        </dialogueOptions>
+        <dialogueOptions speaker="bob" type="uniquelast">
+          <textOptions portrait="happy">
+            <text>Thanks for listening to me, buddy!</text>
+          </textOptions>
+        </dialogueOptions>
+      </chain>
+    </dialogueChains>
+  </conversation>
+  <conversation>
     <relationsMin>-100</relationsMin>
     <relationsMax>-10</relationsMax>
     <dialogueChains>

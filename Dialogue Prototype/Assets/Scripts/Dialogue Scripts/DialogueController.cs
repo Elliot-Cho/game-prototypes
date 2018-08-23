@@ -355,7 +355,6 @@ public class DialogueController : MonoBehaviour {
         return currChain;
     }
 
-    // Get Chains from a list of dialogues that satisfy the current NPC relations and conditions
     /// <summary>
     /// Retrieve a list of all valid dialogue chains from an entity, given that they satisfy NPC relations and conditions.
     /// </summary>
@@ -377,14 +376,14 @@ public class DialogueController : MonoBehaviour {
                         var npc = entity as NPC;
                         if (conversation.relationsMin <= npc.relations && conversation.relationsMax >= npc.relations)
                         {
-                            result = ObjectCopier.Clone(conversation.dialogueChains);
-                            break;
+                            result.AddRange(ObjectCopier.Clone(conversation.dialogueChains));
+                            continue;
                         }
                     }
                     else
                     {
-                        result = ObjectCopier.Clone(conversation.dialogueChains);
-                        break;
+                        result.AddRange(ObjectCopier.Clone(conversation.dialogueChains));
+                        continue;
                     }
                 }
                 break;
