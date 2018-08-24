@@ -305,65 +305,38 @@ public class DialogueController : MonoBehaviour {
     }
 
     /// <summary>
-    /// Retrieve a valid dialogue chain from an entity's working dialogues, based on player relations and NPC condition.
+    /// Retrieve a dialogue chain from an entity's list of valid chains.
     /// </summary>
     /// <param name="entity">The entity to grab a dialogue chain from.</param>
     /// <returns>A valid dialogue chain.</returns>
     public Dialogue.Conversation.Chain GetDialogueChain(Entity entity)
     {
-        var currChain = new Dialogue.Conversation.Chain();
+        var result = new Dialogue.Conversation.Chain();
 
-        // Get a valid chain if available
-        foreach (Dialogue dialogue in entity.workingDialogues)
+        if (entity.validChains.Count.Equals(0))
         {
-            if (dialogue.cond.Equals(entity.cond))
-            {
-                foreach (Dialogue.Conversation conversation in dialogue.conversation)
-                {
-                    if (entity is NPC)
-                    {
-                        var npc = entity as NPC;
-                        if (conversation.relationsMin <= npc.relations && conversation.relationsMax >= npc.relations
-                                                && MatchVars(conversation.vars, npc) && MatchParty(conversation.party))
-                        {
-                            // If no chains exist, reset dialogueChains with the original chains from entityDialogues
-                            if (conversation.dialogueChains.Count.Equals(0))
-                            {
-                                conversation.dialogueChains = new List<Dialogue.Conversation.Chain>(GetChains(entity));
-                            }
-
-                            // Pick random chain
-                            var rand = UnityEngine.Random.Range(0, conversation.dialogueChains.Count);
-                            currChain = conversation.dialogueChains[rand];
-
-                            // Remove chain from workingDialogues
-                            conversation.dialogueChains.RemoveAt(rand);
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        // Implement interaction with NON-NPC here
-                        Debug.Log("Non-NPC GetDialogueChain unimplemented");
-                        break;
-                    }
-                }
-                break;
-            }
+            entity.validChains = GetValidChains(entity);
+            if (entity.validChains.Count.Equals(0))
+                return result;
         }
 
-        return currChain;
+        // Pick a random chain in a list of chains
+        result = entity.validChains[UnityEngine.Random.Range(0, entity.validChains.Count)];
+
+        // Remove the chain from list of valid chains
+        entity.validChains.Remove(result);
+
+        return result;
     }
 
     /// <summary>
-    /// Retrieve a list of all valid dialogue chains from an entity, given that they satisfy NPC relations and conditions.
+    /// Retrieve a list of all valid dialogue chains from an entity, given that they satisfy NPC relations, conditions, variables, and party members.
     /// </summary>
     /// <param name="entity">The entity to grab chains from.</param>
     /// <returns>A lsit of dialogue chains.</returns>
-    public List<Dialogue.Conversation.Chain> GetChains(Entity entity)
+    public List<Dialogue.Conversation.Chain> GetValidChains(Entity entity)
     {
         var result = new List<Dialogue.Conversation.Chain>();
-
         foreach (Dialogue dialogue in entity.entityDialogues)
         {
             if (dialogue.cond.Equals(entity.cond))
@@ -374,7 +347,8 @@ public class DialogueController : MonoBehaviour {
                     if (entity is NPC)
                     {
                         var npc = entity as NPC;
-                        if (conversation.relationsMin <= npc.relations && conversation.relationsMax >= npc.relations)
+                        if (conversation.relationsMin <= npc.relations && conversation.relationsMax >= npc.relations
+                                                && MatchVars(conversation.vars, npc) && MatchParty(conversation.party))
                         {
                             result.AddRange(ObjectCopier.Clone(conversation.dialogueChains));
                             continue;

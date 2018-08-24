@@ -24,7 +24,7 @@ public abstract class Entity : MonoBehaviour {
 
     // Dialogue object with used chains removed
     [HideInInspector]
-    public List<Dialogue> workingDialogues = new List<Dialogue>();
+    public List<Dialogue.Conversation.Chain> validChains = new List<Dialogue.Conversation.Chain>();
 
     // Chain currently being used for dialogue
     [HideInInspector]

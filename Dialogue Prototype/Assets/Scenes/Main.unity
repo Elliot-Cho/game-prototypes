@@ -1192,7 +1192,7 @@ MonoBehaviour:
   rawPortraitSet: {fileID: 2800000, guid: 9e508407a6aa67a479ef1600c9b8c948, type: 3}
   portraitList: []
   entityDialogues: []
-  workingDialogues: []
+  validChains: []
   currentChain:
     repeaterLines: 1
     dialogueOptions: []
@@ -1718,11 +1718,11 @@ MonoBehaviour:
   rawPortraitSet: {fileID: 2800000, guid: 9a6690c46b9669e4fad2a1ca40e68c97, type: 3}
   portraitList: []
   entityDialogues: []
-  workingDialogues: []
+  validChains: []
   currentChain:
     repeaterLines: 1
     dialogueOptions: []
-  relations: 46.9
+  relations: 50
   npcVars: []
 --- !u!4 &1389099470
 Transform:
@@ -2021,7 +2021,7 @@ MonoBehaviour:
   rawPortraitSet: {fileID: 2800000, guid: 18773165c9d9dd643841e0db88b780b1, type: 3}
   portraitList: []
   entityDialogues: []
-  workingDialogues: []
+  validChains: []
   currentChain:
     repeaterLines: 1
     dialogueOptions: []
@@ -2615,7 +2615,7 @@ MonoBehaviour:
   rawPortraitSet: {fileID: 2800000, guid: 537a7198d8efeb547b8af5d4b4b127a0, type: 3}
   portraitList: []
   entityDialogues: []
-  workingDialogues: []
+  validChains: []
   currentChain:
     repeaterLines: 1
     dialogueOptions: []

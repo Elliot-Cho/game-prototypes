@@ -65,7 +65,7 @@ public class GameController : MonoBehaviour {
             if (entity.id.Equals(pseudoDialogue.id))
             {
                 entity.entityDialogues.Add(pseudoDialogue);
-                entity.workingDialogues.Add(ObjectCopier.Clone(pseudoDialogue));
+                entity.validChains = DialogueController.Instance.GetValidChains(entity);
             }
 
             entity.currentChain = DialogueController.Instance.GetDialogueChain(entity);
