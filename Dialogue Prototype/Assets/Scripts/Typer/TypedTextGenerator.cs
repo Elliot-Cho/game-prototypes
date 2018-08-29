@@ -3,6 +3,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
+    using TMPro;
     using UnityEngine.Events;
     using UnityEngine.UI;
 
@@ -41,7 +42,7 @@
         /// <returns>The <see cref="TypedText"/> generated at the specified visible character index.</returns>
         /// <param name="text">Text to parse.</param>
         /// <param name="visibleCharacterIndex">Visible character index (ignores tags).</param>
-        public TypedText GetTypedTextAt(string text, int visibleCharacterIndex)
+        public TypedText GetTypedTextAt(string text, int visibleCharacterIndex, TextMeshProUGUI textComponent)
         {
             var textAsSymbolList = CreateSymbolListFromText(text);
 
@@ -100,11 +101,12 @@
             }
 
             // Remove all custom tags since Unity will display them when printed (it doesn't recognize them as rich text tags)
-            var printText = shownText + hiddenText;
             foreach (var customTag in CustomTagTypes)
             {
-                printText = RichTextTag.RemoveTagsFromString(printText, customTag);
+                shownText = RichTextTag.RemoveTagsFromString(shownText, customTag);
+                hiddenText = RichTextTag.RemoveTagsFromString(hiddenText, customTag);
             }
+            var printText = shownText + hiddenText;
 
             // Calculate Delay, if active
             var delay = 0.0f;
@@ -130,13 +132,42 @@
                 }
             }
 
+            textComponent.text = shownText;
+            textComponent.ForceMeshUpdate();
+
             var typedText = new TypedText();
-            typedText.TextToPrint = printText;
+
+            if (textComponent.isTextOverflowing)
+            {
+                typedText.TextToPrint = shownText;
+                typedText.Continued = printText.Substring(textComponent.firstOverflowCharacterIndex, printText.Length - textComponent.firstOverflowCharacterIndex);
+                Debug.Log(typedText.Continued);
+                typedText.IsComplete = true;
+            }
+            else
+            {
+                typedText.TextToPrint = printText;
+                typedText.IsComplete = string.IsNullOrEmpty(hiddenText);
+            }
+            
             typedText.Delay = delay;
             typedText.LastPrintedChar = lastVisibleCharacter;
-            typedText.IsComplete = string.IsNullOrEmpty(hiddenText);
+            
 
             return typedText;
+        }
+
+        public bool DetectTextOverflow(TextMeshProUGUI textComponent, string text)
+        {
+            Vector2 preferredValues = textComponent.GetPreferredValues(text);
+
+            float maxLineCount = Mathf.Floor(textComponent.rectTransform.rect.height / preferredValues.y);
+            float parentWidth = textComponent.rectTransform.rect.width * maxLineCount;
+
+            if (preferredValues.x > parentWidth)
+                Debug.Log(text);
+
+            return preferredValues.x > parentWidth;
         }
 
         private static List<RichTextTag> GetActiveTagsInSymbolList(List<TypedTextSymbol> symbolList, int visibleCharacterPosition)
@@ -311,6 +342,8 @@
             /// </summary>
             /// <value><c>true</c> if this instance is complete; otherwise, <c>false</c>.</value>
             public bool IsComplete { get; set; }
+
+            public string Continued { get; set; }
         }
 
         private class TypedTextSymbol

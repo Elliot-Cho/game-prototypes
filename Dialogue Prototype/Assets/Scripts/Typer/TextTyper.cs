@@ -41,9 +41,6 @@
         private float defaultPrintDelay;
         private Coroutine typeTextCoroutine;
 
-        [SerializeField]
-        private DialogueController dialogueController;
-
         /// <summary>
         /// Gets the PrintCompleted callback event.
         /// </summary>
@@ -80,7 +77,7 @@
             }
         }
 
-        private TextMeshProUGUI TextComponent
+        public TextMeshProUGUI TextComponent
         {
             get
             {
@@ -150,8 +147,18 @@
             int printedCharCount = 0;
             do
             {
-                typedText = generator.GetTypedTextAt(text, printedCharCount);
+                typedText = generator.GetTypedTextAt(text, printedCharCount, this.TextComponent);
+
+                //Debug.Log(this.TextComponent.text);
+                //this.TextComponent.text = typedText.ShownText;
+                //Debug.Log(CheckTextWidth());
+                //this.TextComponent.ForceMeshUpdate();
+                //Debug.Log(this.TextComponent.isTextOverflowing);
                 this.TextComponent.text = typedText.TextToPrint;
+                //Debug.Log("Before: " + this.TextComponent.isTextOverflowing);
+                //Debug.Log("After: " + this.TextComponent.isTextOverflowing);
+                //Debug.Log(this.TextComponent.isTextOverflowing);
+                //Debug.Log(this.TextComponent.firstOverflowCharacterIndex);
                 this.OnCharacterPrinted(typedText.LastPrintedChar.ToString());
 
                 ++printedCharCount;
