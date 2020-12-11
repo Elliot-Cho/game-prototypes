@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<abilities>
+  <ability>
+    <id>hit</id>
+    <name>Hit</name>
+    <description>Adjacent attack</description>
+
+    <range>1</range>
+    <effectMultiplier>1</effectMultiplier>
+    <baseActionPointCost>1</baseActionPointCost>
+
+    <dangerType>harmful</dangerType>
+    <targetType>point</targetType>
+
+    <abilityEffects>
+      <abilityEffect>Damage</abilityEffect>
+    </abilityEffects>
+  </ability>
+
+  <ability>
+    <id>shoot</id>
+    <name>Shoot</name>
+    <description>Long ranged attack</description>
+
+    <range>5</range>
+    <effectMultiplier>1</effectMultiplier>
+    <baseActionPointCost>2</baseActionPointCost>
+
+    <dangerType>harmful</dangerType>
+    <targetType>point</targetType>
+
+    <abilityEffects>
+      <abilityEffect>Damage</abilityEffect>
+    </abilityEffects>
+  </ability>
+
+  <ability>
+    <id>burst</id>
+    <name>Burst</name>
+    <description>Area attack centered on self</description>
+
+    <range>5</range>
+    <effectMultiplier>1</effectMultiplier>
+    <baseActionPointCost>2</baseActionPointCost>
+
+    <dangerType>harmful</dangerType>
+    <targetType>burst</targetType>
+
+    <abilityEffects>
+      <abilityEffect>Slow</abilityEffect>
+    </abilityEffects>
+  </ability>
+
+  <ability>
+    <id>blast</id>
+    <name>Blast</name>
+    <description>Ranged area attack</description>
+
+    <range>10</range>
+    <areaRange>3</areaRange>
+    <effectMultiplier>1</effectMultiplier>
+    <baseActionPointCost>3</baseActionPointCost>
+
+    <dangerType>harmful</dangerType>
+    <targetType>point</targetType>
+
+    <abilityEffects>
+      <abilityEffect>Damage</abilityEffect>
+      <abilityEffect>Slow</abilityEffect>
+    </abilityEffects>
+  </ability>
+
+  <ability>
+    <id>heal</id>
+    <name>Heal</name>
+    <description>Ranged heal ability</description>
+
+    <range>5</range>
+    <effectMultiplier>1</effectMultiplier>
+    <baseActionPointCost>2</baseActionPointCost>
+
+    <dangerType>helpful</dangerType>
+    <targetType>point</targetType>
+
+    <abilityEffects>
+      <abilityEffect>Heal</abilityEffect>
+    </abilityEffects>
+  </ability>
+</abilities>
