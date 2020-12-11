@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<character id="francis">
+  <name>Francis</name>
+  <level>1</level>
+  <playerRelations>30</playerRelations>
+  <loyalty>40</loyalty>
+  
+  <baseAttributes>
+    <str>10</str>
+    <dex>12</dex>
+    <spd>10</spd>
+    <con>10</con>
+    <apt>10</apt>
+  </baseAttributes>
+
+  <baseTalents>
+    <expl>2</expl>
+    <crft>1</crft>
+    <smth>1</smth>
+    <thau>1</thau>
+  </baseTalents>
+</character>
