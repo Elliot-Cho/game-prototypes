@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Wayfinder {
   public class SlowEffectDecorator : AbilityEffectDecorator {
@@ -13,6 +14,9 @@ namespace Wayfinder {
       this.abilityEffect.ApplyEffect();
 
       Debug.Log($"Slow effect used by {ability.user.entityName}");
+      if (base.GetAbilityEntityTargets().Count > 0) {
+        Debug.Log($"Slow effect targets: {base.GetAbilityEntityTargets().Select(i => i.entityName).Aggregate((i, j) => i + ", " + j)}");
+      }
     }
   }
 }

@@ -61,9 +61,18 @@ namespace Wayfinder {
     public event EventHandler EntityHighlighted;
     public event EventHandler EntityDehighlighted;
 
+    private SpriteRenderer sprite;
+    protected readonly Dictionary<string, Color> HighlightColours = new Dictionary<string, Color> {
+      ["harmful"] = new Color(1f, 0.5f, 0.5f, 1),
+      ["helpful"] = new Color(0.5f, 1f, 0.5f, 1),
+      ["neutral"] = new Color(1f, 1f, 0.5f, 1)
+    };
+
     protected virtual void Awake() {
       // Place entity into EntityList on instantiation
       EntityList.Add(this);
+
+      this.sprite = transform.GetComponent<SpriteRenderer>();
 
       // Set entity size based on its GridSize
       transform.localScale = new Vector3(gridSize.x, gridSize.y, 1);
@@ -250,6 +259,20 @@ namespace Wayfinder {
 
     public bool SharesAltitudeWith(Entity otherEntity) {
       return this.altitude == otherEntity.altitude;
+    }
+
+    // Mark the entity using a given color
+    public void Mark(String colour) {
+      this.sprite.color = this.HighlightColours[colour];
+    }
+
+    // Method returns the entity to its base appearance.
+    public void UnMark() {
+      this.sprite.color = new Color(1, 1, 1, 1);
+    }
+
+    public static void UnmarkAllEntities() {
+      EntityList.ForEach(entity => entity.UnMark());
     }
   }
 }
