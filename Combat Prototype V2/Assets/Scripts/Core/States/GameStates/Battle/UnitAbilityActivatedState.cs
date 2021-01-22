@@ -23,6 +23,7 @@ namespace Wayfinder {
     public override void OnStateExit() {
       base.OnStateExit();
       Cell.UnmarkAllCells();
+      Entity.UnmarkAllEntities();
     }
 
     public override void OnCancelKey() {
@@ -39,6 +40,8 @@ namespace Wayfinder {
       Cell mouseOverCell = sender as Cell;
 
       Cell.UnmarkAllCells();
+      Entity.UnmarkAllEntities();
+
       this.DisplayTargetOptions();
     }
 
@@ -74,9 +77,37 @@ namespace Wayfinder {
       }
     }
 
-    private void DisplayTargets(Cell originCell) {
-      foreach (Cell targetCell in this.currentAbility.GetTargetCells(originCell)) {
+    private void DisplayTargets(Cell mouseOverCell) {
+      foreach (Cell targetCell in this.currentAbility.GetTargetCells(mouseOverCell)) {
         targetCell.Mark("harmfulTarget");
+
+        this.HighlightTargetEntities(targetCell);
+      }
+    }
+
+    private void HighlightTargetEntities(Cell targetCell) {
+      if (targetCell.occupyingEntities.Count == 0) return;
+
+      string markColour = "";
+      switch (this.currentAbility.dangerType) {
+        case Ability.DangerType.harmful:
+          markColour = "harmful";
+          break;
+        case Ability.DangerType.neutral:
+          markColour = "neutral";
+          break;
+        case Ability.DangerType.helpful:
+          markColour = "helpful";
+          break;
+        default:
+          markColour = "neutral";
+          break;
+      }
+
+      foreach (Entity targetEntity in targetCell.occupyingEntities) {
+        if (this.currentAbility.CanTargetEntity(targetEntity)) {
+          targetEntity.Mark(markColour);
+        }
       }
     }
 

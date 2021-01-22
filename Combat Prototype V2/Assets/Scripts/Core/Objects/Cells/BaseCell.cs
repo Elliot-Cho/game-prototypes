@@ -100,6 +100,6 @@ namespace Wayfinder {
     // Method returns the cell to its base appearance.
     public override void UnMark() {
       this.sprite.color = new Color(1, 1, 1, 1);
-      }
+    }
   }
 }

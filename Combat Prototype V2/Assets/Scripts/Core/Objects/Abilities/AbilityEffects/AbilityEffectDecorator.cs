@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Wayfinder {
   public abstract class AbilityEffectDecorator : IAbilityEffect {
@@ -17,6 +18,20 @@ namespace Wayfinder {
 
     public virtual void ApplyEffect() {
       this.abilityEffect.ApplyEffect();
+    }
+
+    public List<Entity> GetAbilityEntityTargets() {
+      List<Entity> targetEntities = new List<Entity>();
+
+      foreach (Cell cell in targetCells) {
+        foreach (Entity occupyingEntity in cell.occupyingEntities) {
+          if (ability.CanTargetEntity(occupyingEntity)) {
+            targetEntities.Add(occupyingEntity);
+          }
+        }
+      }
+
+      return targetEntities.Distinct().ToList();
     }
   }
 }

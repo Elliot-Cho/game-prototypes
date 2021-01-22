@@ -97,6 +97,25 @@ public class GenericDictionary<TKey, TValue> : IDictionary<TKey, TValue>, ISeria
 
     public bool TryGetValue(TKey key, out TValue value) => dict.TryGetValue(key, out value);
 
+    // Return dictionary string value as float or bool if applicable - dirty way to allow dynamic hashes
+    public dynamic GetConvertedValue(TKey key, dynamic defaultValue = null) {
+      if (!this.ContainsKey(key)) return defaultValue;
+
+      string value = dict[key] as string;
+
+      float floatValue;
+      if (float.TryParse(value, out floatValue)) {
+        return floatValue;
+      }
+
+      bool boolValue;
+      if (bool.TryParse(value, out boolValue)) {
+        return boolValue;
+      }
+
+      return value;
+    }
+
     // ICollection
     public int Count => dict.Count;
     public bool IsReadOnly { get; set; }
